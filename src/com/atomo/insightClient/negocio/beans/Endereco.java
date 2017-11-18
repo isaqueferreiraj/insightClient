@@ -3,7 +3,7 @@ package com.atomo.insightClient.negocio.beans;
 public class Endereco {
 	private String rua;
 	private int numero;
-	private int complemento;
+	private String complemento;
 	private String cidade;
 	private String estado;
 	private String pais;
@@ -33,11 +33,11 @@ public class Endereco {
 		this.numero = numero;
 	}
 
-	public int getComplemento() {
+	public String getComplemento() {
 		return complemento;
 	}
 
-	public void setComplemento(int complemento) {
+	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
 
