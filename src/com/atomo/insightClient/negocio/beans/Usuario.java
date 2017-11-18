@@ -1,30 +1,42 @@
 package com.atomo.insightClient.negocio.beans;
 
-public abstract class Usuario {
+public class Usuario {
 	private String email;
 	private String senha;
 	private String nome;
 	private long id;
 	private Endereco endereco;
-	private Ideia[] repositorioIdeias;
+	private LocalDate dataNascimento;
 	private int qtdInsights;
-	private int qtdIdeias = 0;
+	private int qtdIdeias;
+	private boolean empresa;
 	
-	public Usuario(String email, String senha, String nome, Endereco endereco, long id){
+	private static long empresaProximoID;
+	private static long pessoaProximoID;
+	
+	public Usuario(String email, String senha, String nome, Endereco endereco,
+			LocalDate dataNascimento, boolean empresa){
 		this.email = email;
 		this.senha = senha;
 		this.nome = nome;
 		this.endereco = endereco;
-		this.id = id;
-		this.repositorioIdeias = new Ideia[10];
+		this.dataNascimento = dataNascimento;
+		if(empresa == true){
+			this.id = empresaProximoID;
+			Usuario.empresaProximoID++;
+		}
+		else{
+			this.id = pessoaProximoID;
+			Usuario.pessoaProximoID++;
+		}
 	}
 	
-	public Usuario(String nome, String email, String senha, long id){
+	public Usuario(String nome, String email, String senha){
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
-		this.id = id;
-		this.repositorioIdeias = new Ideia[10];
+		this.id = pessoaProximoID;
+		Usuario.pessoaProximoID++;
 	}
 	
 	public String getEmail() {
@@ -55,30 +67,12 @@ public abstract class Usuario {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}
-	
-	public void setIdeia(Ideia ideia){
-		if(this.qtdIdeias < 10){
-				this.repositorioIdeias[qtdIdeias] = ideia;
-		}
-		
-			/*else if(i == repositorioIdeias.length-1){
-				//Aumentar array
-			}*/		
-	}
-	
-	public Ideia getIdeia(int i){
-		return repositorioIdeias[i];
 	}
 	
 	public int getQtdIdeias(){
@@ -93,8 +87,12 @@ public abstract class Usuario {
 		this.qtdInsights = qtdInsights;
 	}
 	
-	/*int i = 0;
-		while(repositorioIdeias[i] != null && i < repositorioIdeias.length)
-			i++;
-		return i;*/
+	public LocalDate getDataNascimento(){
+		return this.dataNascimento;
+	}
+	
+	public void setDataNascimento(LocalDate dataNascimento){
+		this.dataNascimento = dataNascimento;
+	}
+	
 }

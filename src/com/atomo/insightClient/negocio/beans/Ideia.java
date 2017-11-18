@@ -3,11 +3,11 @@ package com.atomo.insightClient.negocio.beans;
 public class Ideia {
 	private String texto;
 	private String categoria;
-	private Pessoa autor;
-	private Empresa empresa;
+	private Usuario autor;
+	private Usuario empresa;
 	private boolean insight;
 	
-	public Ideia(String texto, String categoria, Pessoa autor, Empresa empresa){
+	public Ideia(String texto, String categoria, Usuario autor, Usuario empresa){
 		this.texto = texto;
 		this.categoria = categoria;
 		this.autor = autor;
@@ -38,20 +38,25 @@ public class Ideia {
 		this.insight = insight;
 	}
 
-	public Pessoa getAutor() {
+	public Usuario getAutor() {
 		return autor;
 	}
 
-	public Empresa getEmpresa() {
+	public Usuario getEmpresa() {
 		return empresa;
 	}
 	
 	public String toString(){
-		StringBuffer string = null;
+		StringBuffer sb = null;
 		
-		string.append("\n" + this.empresa.getNome() + "\nCategoria:\n " + this.categoria + this.texto + this.autor.getNome());
+		sb.append("Empresa: " + this.empresa.getNome());
+		sb.append("\nCategoria: ");
+		sb.append(getCategoria());
+		sb.append("\n" + this.texto);
+		sb.append("\n" + this.getAutor().getNome());
+		
 		if(this.insight == true)
-			string.append("\nSua ideia foi avaliada como um insight!!!");
+			sb.append("\nSua ideia foi avaliada como um insight!!!");
 		return string.toString();
 	}
 }
