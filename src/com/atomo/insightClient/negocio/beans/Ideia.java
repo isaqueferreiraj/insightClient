@@ -57,6 +57,6 @@ public class Ideia {
 		
 		if(this.insight == true)
 			sb.append("\nSua ideia foi avaliada como um insight!!!");
-		return string.toString();
+		return sb.toString();
 	}
 }

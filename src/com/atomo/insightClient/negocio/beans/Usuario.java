@@ -1,5 +1,7 @@
 package com.atomo.insightClient.negocio.beans;
 
+import java.time.LocalDate;
+
 public class Usuario {
 	private String email;
 	private String senha;
